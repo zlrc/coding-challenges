@@ -1,0 +1,192 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+</head>
+
+
+<!-- 
+Alarm: https://icon-sets.iconify.design/ion/alarm/
+Timer: https://icon-sets.iconify.design/ion/timer-outline/
+Stopwatch: https://icon-sets.iconify.design/ion/stopwatch/
+Cancel: https://icon-sets.iconify.design/iconoir/cancel/
+Pause: https://icon-sets.iconify.design/ion/pause-outline/
+-->
+<template id="nav-btn">
+    <button>
+        <div class="icon-container">
+            <slot name="icon"></slot>
+        </div>
+        <div class="nav-text">
+            <slot name="label"></slot>
+        </div>
+    </button>
+    <style>
+        :host {
+            display: contents;
+        }
+
+        button {
+            all: unset;
+            opacity: 75%;
+            width: 100%;
+            height: 100%;
+            transition: background 0.2s linear, opacity 0.2s linear;
+        }
+
+        button:hover,
+        button:focus {
+            background: #0b9abc;
+            opacity: 100%;
+        }
+
+        .icon-container {
+            width: 2rem;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        .icon-container ::slotted(svg) {
+            width: 100%;
+            height: 100%;
+        }
+
+        .nav-text {
+            pointer-events: none;
+            text-align: center;
+        }
+
+        @media (max-height: 25rem) {
+            .nav-text {
+                display: none;
+            }
+        }
+    </style>
+</template>
+
+<template id="circle-btn">
+    <button>
+        <div class="icon-container">
+            <slot></slot>
+        </div>
+    </button>
+    <style>
+        button {
+            all: unset;
+            background: #adfce7;
+            width: 5rem;
+            height: 5rem;
+            border-radius: 100%;
+            box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.2);
+            transition: all 0.2s ease-in-out;
+        }
+
+        button:hover,
+        button:focus {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 12px 0px rgba(0, 0, 0, 0.15);
+        }
+
+        button:active {
+            transform: unset;
+            box-shadow: unset;
+            filter: brightness(1.1);
+            transition-duration: 0.1s;
+        }
+
+        .icon-container {
+            color: #545454;
+            margin: 1rem;
+        }
+
+        .icon-container ::slotted(*) {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</template>
+
+
+<!----------------------------------->
+
+
+<body>
+    <div class="window">
+        <div class="nav-header">
+            <nav-btn>
+                <svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 512 512">
+                    <path fill="currentColor"
+                        d="M153.59 110.46A21.41 21.41 0 0 0 152.48 79A62.67 62.67 0 0 0 112 64l-3.27.09h-.48C74.4 66.15 48 95.55 48.07 131c0 19 8 29.06 14.32 37.11a20.6 20.6 0 0 0 14.7 7.8c.26 0 .7.05 2 .05a19.06 19.06 0 0 0 13.75-5.89Zm250.2-46.35l-3.27-.1H400a62.67 62.67 0 0 0-40.52 15a21.41 21.41 0 0 0-1.11 31.44l60.77 59.65a19.06 19.06 0 0 0 13.79 5.9c1.28 0 1.72 0 2-.05a20.6 20.6 0 0 0 14.69-7.8c6.36-8.05 14.28-18.08 14.32-37.11c.06-35.49-26.34-64.89-60.15-66.93" />
+                    <path fill="currentColor"
+                        d="M256.07 96c-97 0-176 78.95-176 176a175.23 175.23 0 0 0 40.81 112.56l-36.12 36.13a16 16 0 1 0 22.63 22.62l36.12-36.12a175.63 175.63 0 0 0 225.12 0l36.13 36.12a16 16 0 1 0 22.63-22.62l-36.13-36.13A175.17 175.17 0 0 0 432.07 272c0-97-78.95-176-176-176m16 176a16 16 0 0 1-16 16h-80a16 16 0 0 1 0-32h64v-96a16 16 0 0 1 32 0Z" />
+                </svg>
+                <p slot="label">Alarm</p>
+            </nav-btn>
+            <nav-btn class="selected">
+                <svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 512 512">
+                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="32"
+                        d="M112.91 128A191.85 191.85 0 0 0 64 254c-1.18 106.35 85.65 193.8 192 194c106.2.2 192-85.83 192-192c0-104.54-83.55-189.61-187.5-192a4.36 4.36 0 0 0-4.5 4.37V152" />
+                    <path fill="currentColor"
+                        d="m233.38 278.63l-79-113a8.13 8.13 0 0 1 11.32-11.32l113 79a32.5 32.5 0 0 1-37.25 53.26a33.2 33.2 0 0 1-8.07-7.94" />
+                </svg>
+                <p slot="label">Timer</p>
+            </nav-btn>
+            <nav-btn>
+                <svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 512 512">
+                    <circle cx="256" cy="272" r="16" fill="currentColor" />
+                    <path fill="currentColor"
+                        d="M280 81.5V72a24 24 0 0 0-48 0v9.5a191 191 0 0 0-84.43 32.13L137 103a24 24 0 0 0-34 34l8.6 8.6A191.17 191.17 0 0 0 64 272c0 105.87 86.13 192 192 192s192-86.13 192-192c0-97.74-73.42-178.66-168-190.5M256 320a48 48 0 0 1-16-93.25V152a16 16 0 0 1 32 0v74.75A48 48 0 0 1 256 320" />
+                </svg>
+                <p slot="label">Stopwatch</p>
+            </nav-btn>
+        </div>
+
+        <div class="tab-contents">
+            <div class="timer" style="--progress: 0.34;">
+                <p class="text-md">Timer</p>
+                <div class="timer__frame">
+                    <p class="timer__time-left text-lg">26:04</p>
+                    <svg class="timer__progress">
+                        <circle pathLength=100 stroke-dasharray=100 stroke-linecap="round" stroke="currentColor"
+                            fill="none" cx="50%" cy="50%" r="50%" />
+                    </svg>
+                    <div class="timer__progress-tip"></div>
+                </div>
+            </div>
+
+            <div class="timer-controls">
+                <circle-btn>
+                    <svg color="#ff7779" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                        viewBox="0 0 24 24">
+                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M6.758 17.243L12.001 12m5.243-5.243L12 12m0 0L6.758 6.757M12.001 12l5.243 5.243" />
+                    </svg>
+                </circle-btn>
+                <circle-btn>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 512 512">
+                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="32" d="M176 96h16v320h-16zm144 0h16v320h-16z" />
+                    </svg>
+                </circle-btn>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+
+<!---->
+
+<link rel="stylesheet" href="style.css">
+
+<!---->
+
+<script src="script.js"></script>
